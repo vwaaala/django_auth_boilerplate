@@ -1,0 +1,34 @@
+{% extends '_base/_base.html' %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-4">
+
+        </div>
+        <div class="col-sm-4">
+            <div class="container mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        Login
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="post">
+                            <div class="form-group mb-2">
+                                <input class="form-control form-control-sm"
+                                       name="email" id="emailField" type="email" placeholder="Email">
+                            </div>
+                            <div class="form-group mb-1">
+                                <input class="form-control form-control-sm"
+                                       name="password" id="passwordField" type="password" placeholder="Password">
+
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="checkbox">
+                            </div>
+                            <button class="btn btn-outline-secondary" type="submit" value="Login">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

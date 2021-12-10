@@ -2,7 +2,21 @@ const usernameField = document.querySelector('#usernameField');
 const feedBackFeedUsername = document.querySelector(".username");
 
 const emailField = document.querySelector('#emailField');
-const feedBackFeedEmail = document.querySelector('.email')
+const feedBackFeedEmail = document.querySelector('.email');
+
+const passwordField = document.querySelector('#passwordField');
+const showPasswordToggle = document.querySelector('.showPasswordToggle');
+
+const handleShowPasswordToggle = (event) => {
+    if (showPasswordToggle.textContent === 'Show password') {
+        showPasswordToggle.textContent = 'Hide password';
+        passwordField.setAttribute("type", "text");
+    } else {
+        showPasswordToggle.textContent = 'Show password';
+        passwordField.setAttribute("type", "password");
+    }
+
+};
 
 usernameField.addEventListener('keyup', (event)=>{
     // catch username value from input field
@@ -49,4 +63,6 @@ emailField.addEventListener('keyup', (event) => {
             }
         })
     }
-})
+});
+
+showPasswordToggle.addEventListener('click', handleShowPasswordToggle);

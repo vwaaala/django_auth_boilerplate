@@ -12,19 +12,23 @@
                     </div>
                     <div class="card-body">
                         <form action="" method="post">
+                            {% csrf_token %}
                             <div class="form-group mb-2">
                                 <input class="form-control form-control-sm"
-                                       name="email" id="emailField" type="email" placeholder="Email">
+                                       name="username" id="usernameField" type="text" placeholder="Username">
                             </div>
                             <div class="form-group mb-1">
                                 <input class="form-control form-control-sm"
                                        name="password" id="passwordField" type="password" placeholder="Password">
+                                <a href="{% url 'authentication:reset-password' %}">Forgot password?</a>
 
                             </div>
                             <div class="form-group mb-2">
                                 <input type="checkbox">
                             </div>
                             <button class="btn btn-outline-secondary" type="submit" value="Login">Login</button>
+                            <span>Don't have an account?</span>
+                            <a href="{% url 'authentication:register' %}">Register</a>
                         </form>
                     </div>
                 </div>

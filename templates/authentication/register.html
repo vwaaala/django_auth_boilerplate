@@ -1,6 +1,7 @@
 {% extends '_base/_base.html' %}
 {% load static %}
 {% block content %}
+
     <div class="row">
         <div class="col-sm-4">
 
@@ -11,12 +12,13 @@
                     <div class="card-header">
                         Register
                     </div>
+                    {% include '_base/_messages.html' %}
                     <div class="card-body">
-                        <form action="" method="post">
+                        <form action="{% url 'authentication:register' %}" method="post">
                             {% csrf_token %}
                             <div class="form-group mb-2">
                                 <input class="form-control form-control-sm"
-                                       name="username" id="usernameField" type="text"
+                                       name="username" id="usernameField" value="{{ username }}" type="text"
                                        placeholder="Username">
                             </div>
                             <div class="invalid-feedback username" style="display:none">
@@ -24,7 +26,7 @@
                             </div>
                             <div class="form-group mb-2">
                                 <input class="form-control form-control-sm" name="email"
-                                       id="emailField" type="email" placeholder="Email">
+                                       id="emailField" value="{{ email }}" type="email" placeholder="Email">
                             </div>
                             <div class="invalid-feedback email" style="display:none">
                             </div>
@@ -37,8 +39,10 @@
                                 <small class="float-end text-secondary showPasswordToggle" style="cursor: pointer; text-decoration: underline">Show password</small>
                             </div>
                             <div class="form-group pt-3">
-                                <button class="btn btn-outline-secondary" type="submit" value="Register">Register
+                                <button class="btn btn-outline-secondary submit-btn" type="submit" value="Register">Register
                                 </button>
+                                <span>Already have an account?</span>
+                            <a href="{% url 'authentication:login' %}">Login</a>
                             </div>
 
                         </form>

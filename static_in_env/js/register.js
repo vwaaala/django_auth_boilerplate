@@ -7,6 +7,8 @@ const feedBackFeedEmail = document.querySelector('.email');
 const passwordField = document.querySelector('#passwordField');
 const showPasswordToggle = document.querySelector('.showPasswordToggle');
 
+const submitBtn = document.querySelector('.submit-btn');
+
 const handleShowPasswordToggle = (event) => {
     if (showPasswordToggle.textContent === 'Show password') {
         showPasswordToggle.textContent = 'Hide password';
@@ -18,7 +20,7 @@ const handleShowPasswordToggle = (event) => {
 
 };
 
-usernameField.addEventListener('keyup', (event)=>{
+usernameField.addEventListener('keyup', (event) => {
     // catch username value from input field
     const username = event.target.value;
 
@@ -35,9 +37,12 @@ usernameField.addEventListener('keyup', (event)=>{
             .then((response) => response.json())
             .then((data) => {
                 if (data.username_error) {
+                    submitBtn.disabled = true;
                     usernameField.classList.add("is-invalid");
                     feedBackFeedUsername.style.display = 'block';
                     feedBackFeedUsername.innerHTML = `<p>${data.username_error}</p>`;
+                } else {
+                    submitBtn.removeAttribute("disabled");
                 }
             })
     }
@@ -51,17 +56,20 @@ emailField.addEventListener('keyup', (event) => {
 
     if (email.length > 0) {
         fetch('/authentication/validate-email', {
-        body: JSON.stringify({email: email}),
-        method: 'POST',
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.email_error) {
-                emailField.classList.add('is-invalid');
-                feedBackFeedEmail.style.display = 'block';
-                feedBackFeedEmail.innerHTML = `<p>${data.email_error}</p>`
-            }
+            body: JSON.stringify({email: email}),
+            method: 'POST',
         })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.email_error) {
+                    submitBtn.disabled = true;
+                    emailField.classList.add('is-invalid');
+                    feedBackFeedEmail.style.display = 'block';
+                    feedBackFeedEmail.innerHTML = `<p>${data.email_error}</p>`
+                } else {
+                    submitBtn.removeAttribute("disabled");
+                }
+            })
     }
 });
 
